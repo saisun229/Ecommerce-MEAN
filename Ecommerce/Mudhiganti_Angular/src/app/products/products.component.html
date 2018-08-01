@@ -1,0 +1,158 @@
+<!--created by bodapati
+ Id:700663385-->
+<div class="row">
+  <div class="col-xs-12">
+
+     <span class="pull-right sorting" id='lowtohigh'>Price Low-High</span>
+     <span class="pull-right sorting" id='hightolow'>Price High-Low</span>
+     <span class="pull-right sorting highlight" id='latest'>Latest</span>
+   </div>
+</div>
+<!--displaying all the products-->
+<ul class="row list-unstyled productsList">
+  <li *ngFor="let item of items" class="col-sm-3">
+    <img [src]="'http://localhost:3000/downloadimage?id='+item.imageid">
+    <div class="desBlock">
+        <span class="hide sellerid">{{item.sellerid}}</span>
+        <span class="hide itemid">{{item.itemid}}</span>
+        <p class="product" [attr.product]=item.productname>{{ item.productname }}</p>
+        <p class="description" [attr.des]=item.description>{{ item.description }}</p>
+        <p class="price" [attr.price]=item.price>Price: ${{ item.price }}</p>
+        <p><a>Click to More  </a><i class="fa fa-angle-double-right" aria-hidden="true"></i></p>
+    </div>
+  </li>
+</ul>
+<!--modal for displaying individual product-->
+ <div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header headerColor">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Product Detail</h4>
+      </div>
+      <div class="modal-body">
+        <img id="imgPath"/>
+        <div class="productInfo" id='modalProduct'>
+            <span class="hide sellerIdPopup"></span>
+            <span class="hide itemIdPopup"></span>
+            <ul class="list-unstyled">
+              <li class="product"></li>
+              <li class="description"></li>
+              <li class="price"></li>
+            </ul>
+        </div>
+        <div>
+            <p><b>Contact Information</b></p>
+            <p style="margin-top: 10px"><b>Name:</b> {{userData.firstname}},</p>
+            <span style="margin-top: 10px"><b>Mobile:</b> {{userData.mobile}},</span>
+            <span><b>  Email:</b> {{userData.email}},</span>
+            <span><b>  Address:</b> {{userData.address}}</span>
+        </div>
+        <div>
+            <textarea class="sendMsg" placeholder="send message"></textarea>
+            <button type="button" class="btn btn-primary sendBtn">Send</button>
+            <button type="button" class="btn btn-success buyBtn">Buy Now</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="buynow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard=false>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header headerColor">
+        <h4 class="modal-title" id="myModalLabel">Buy Now</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+            <div>
+
+              <!--Form for displaying payment-->
+              <form class="form-horizontal" method="post" (ngSubmit)="buynowSubmit(userForm)" #userForm="ngForm">
+                <div class="form-group">
+                  <label for="price" class="col-sm-4 control-label">Price $</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="price" placeholder="Price" required name="price" [(ngModel)]="buyit.price" #price="ngModel" pattern="[0-9]*" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="card" class="col-sm-4 control-label">Enter Card Number</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="card" placeholder="Enter Card Number" required name="card" [(ngModel)]="buyit.card" #card="ngModel" pattern="[0-9]*" maxlength="16" minlength="16">
+                    <div [hidden]="card.valid || card.pristine"
+                         class="alert alert-danger">
+                         <div [hidden]="!card.hasError('minlength')">card number should be 16digit</div>
+                         <div [hidden]="!card.hasError('required')">card number is required</div>
+                         <div [hidden]="!card.hasError('pattern')">card number should be only numbers</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="cvv" class="col-sm-4 control-label">Enter CVV</label>
+                  <div class="col-sm-8">
+
+
+                    <input type="text" class="form-control" minlength="3" maxlength="3" id="cvv" placeholder="Enter CVV Number" required pattern="[0-9]*" name="cvv" [(ngModel)]="buyit.cvv" #cvv="ngModel" >
+                    <div [hidden]="cvv.valid || cvv.pristine"
+                         class="alert alert-danger">
+                         <div [hidden]="!cvv.hasError('minlength')">CVV should be 3 digit</div>
+                         <div [hidden]="!cvv.hasError('required')">cvv is required</div>
+                         <div [hidden]="!cvv.hasError('pattern')">cvv should be only numbers</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="cvv" class="col-sm-4 control-label">Expiry Month</label>
+                  <div class="col-sm-8">
+                      <select class="form-control" style="width:100px;">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option selected>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="cvv" class="col-sm-4 control-label">Expiry year</label>
+                  <div class="col-sm-8">
+                      <select class="form-control" style="width:100px;">
+                        <option selected="">2018</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Buy Now</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

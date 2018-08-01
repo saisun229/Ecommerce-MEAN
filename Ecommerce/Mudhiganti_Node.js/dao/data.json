@@ -1,0 +1,32 @@
+[{
+  "categoryid": "101",
+	"categroryDesc": "Properties"
+},
+{
+  "categoryid": "102",
+	"categroryDesc": "Cars"
+},
+{
+  "categoryid": "103",
+	"categroryDesc": "Electronics"
+},
+{
+  "categoryid": "104",
+	"categroryDesc": "Furniture"
+},
+{
+  "categoryid": "105",
+	"categroryDesc": "Mobile"
+},
+{
+  "categoryid": "106",
+	"categroryDesc": "Books"
+},
+{
+  "categoryid": "107",
+	"categroryDesc": "Fashion and Cloths"
+},
+{
+  "categoryid": "108",
+	"categroryDesc": "Pets"
+}]

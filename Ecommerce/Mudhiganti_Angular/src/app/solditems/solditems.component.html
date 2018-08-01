@@ -1,0 +1,11 @@
+
+ <ul class="row list-unstyled productsList myitems">
+  <li *ngFor="let item of items" class="col-sm-3">
+    <img [src]="'http://localhost:3000/downloadimage?id='+item.imageid">
+    <div class="desBlock">
+        <p class="product">{{ item.productname }}</p>
+        <p class="description">{{ item.description }}</p>
+        <p class="price">Price: ${{ item.price }}</p>
+    </div>
+  </li>
+</ul>

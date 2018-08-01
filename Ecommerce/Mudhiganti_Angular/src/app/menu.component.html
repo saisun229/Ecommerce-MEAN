@@ -1,0 +1,17 @@
+<div class="row">
+   <div class="col-xs-12">
+    <ul class="nav nav-pills">
+     <li routerLinkActive="active"> <a [routerLink]="['/products']" >Products</a></li>
+     <!-- <li routerLinkActive="active"> <a [routerLink]="['/movie']" >Movie Details</a></li>
+     <li routerLinkActive="active"> <a [routerLink]="['/currency']" >Currency Rates</a></li> -->
+     <!-- <li routerLinkActive="active"> <a [routerLink]="['/myprofile']" >Dashboard</a></li> -->
+
+     <li routerLinkActive="active"> <a *ngIf="userType" [routerLink]="['/myitems']" >My Items</a></li>
+     <li routerLinkActive="active"> <a *ngIf="userType" [routerLink]="['/solditems']" >Sold Items</a></li>
+     <li routerLinkActive="active" > <a *ngIf="userType" [routerLink]="['/upload']" >Add Item</a></li>
+     <li routerLinkActive="active"> <a [routerLink]="['/profile']" >Profile Settings</a></li>
+     <li routerLinkActive="active" > <a *ngIf="userType" [routerLink]="['/messages']" >Messages</a></li>
+     <li routerLinkActive="active" *ngIf="isAdmin"> <a [routerLink]="['/admin']" >Admin</a></li>
+    </ul>
+  </div>
+ </div>

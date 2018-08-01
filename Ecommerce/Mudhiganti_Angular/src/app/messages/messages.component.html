@@ -1,0 +1,24 @@
+
+<div class="">
+  <ul class="nav nav-tabs" id='msgs'>
+    <li *ngFor="let msg of msgs;let i = index"><a data-toggle="tab" [attr.href]="'#a'+i">{{msg.conversationWith}} - {{ msg.productName }}</a></li>
+  </ul>
+
+  <div class="tab-content" id='tabContent'>
+
+    <div class="tab-pane fade" *ngFor="let msg of msgs;let i = index" [id]="'a'+i" >
+      <section *ngFor="let text of msg.messages">
+        {{text.senderName}} - {{text.sentOn}}
+        <div><i>{{text.message}}</i></div>
+      </section>
+      <div>
+            <textarea class="sendMsg" placeholder="send message"></textarea>
+            <div><button type="button" class="btn btn-primary sendBtn" [attr.receiver]=msg.convesationUserId [attr.itemid]=msg.itemId >Send</button></div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

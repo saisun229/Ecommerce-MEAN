@@ -1,0 +1,158 @@
+
+
+
+<div class="modal fade" id="loginpopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard=false>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header headerColor">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <button type="button" class="btn btn-warning pull-right" id="register">Signup</button>
+        <h4 class="modal-title" id="myModalLabel">Login / Signup</h4>
+      </div>
+      <div class="modal-body">
+          <div [hidden]="submitted">
+            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+
+              <!-- <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="text" class="form-control" id="email"
+                required
+                [(ngModel)]="model.email" name="email"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                #email="ngModel">
+                <div [hidden]="email.valid || email.pristine"
+                   class="alert alert-danger">
+                    Email is required Ex:<small><b>joe@abc.com</b></small>
+                </div>
+              </div> -->
+
+              <div class="form-group">
+                <label for="email">Email </label>
+
+                    <input type="text" class="form-control" id="email"
+                    required placeholder="Email"
+                    [(ngModel)]="model.email" name="email"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    #email="ngModel"><span>Email Format Ex:<small><b>joe@abc.com</b></small></span>
+                    <!-- <div [hidden]="email.valid || email.pristine"
+                       class="alert alert-danger">
+                        Email is required Ex:<small><b>joe@abc.com</b></small>
+                    </div> -->
+              </div>
+
+               <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password"
+                       required
+                       [(ngModel)]="model.password" name="password"
+                       #name="ngModel">
+                <div [hidden]="name.valid || name.pristine"
+                     class="alert alert-danger">
+                  Password is required
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+            </form>
+          </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="signuppopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard=false>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header headerColor">
+        <button type="button" class="btn btn-warning pull-right" id="register">Signup</button>
+        <h4 class="modal-title" id="myModalLabel">Signup</h4>
+      </div>
+      <div class="modal-body">
+            <div [hidden]="submitted">
+              <form class="form-horizontal" (ngSubmit)="signupSubmit(userForm)" #userForm="ngForm" method="post">
+                <div class="form-group">
+                  <label for="firstname" class="col-sm-2 control-label">First Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstname" placeholder="First Name" required name="firstname" [(ngModel)]="model.firstname" #firstname="ngModel">
+                    <div [hidden]="firstname.valid || firstname.pristine"
+                         class="alert alert-danger">
+                      First Name is required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastname" placeholder="Last Name" required name="lastname" [(ngModel)]="model.lastname" #lastname="ngModel">
+                    <div [hidden]="lastname.valid || lastname.pristine"
+                         class="alert alert-danger">
+                      Last Name is required
+                    </div>
+                  </div>
+                </div>
+
+              <div class="form-group">
+                <label for="s_email" class="col-sm-2 control-label">Email </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="s_email"
+                    required placeholder="Email"
+                    [(ngModel)]="model.email" name="email"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    #email="ngModel">
+                    <div [hidden]="email.valid || email.pristine"
+                       class="alert alert-danger">
+                        Email is required Ex:<small><b>joe@abc.com</b></small>
+                    </div>
+                </div>
+              </div>
+
+                <div class="form-group">
+                  <label for="s_password" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="s_password" placeholder="Password" required name="password" [(ngModel)]="model.password" #password="ngModel">
+                    <div [hidden]="password.valid || password.pristine"
+                         class="alert alert-danger">
+                      Password is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="mobile" class="col-sm-2 control-label">mobile Number</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" minlength="10" maxlength="10"  class="form-control" id="mobile" placeholder="mobile number" required pattern="[0-9]*" name="mobile" [(ngModel)]="model.mobile" #mobile="ngModel">
+                      <div [hidden]="mobile.valid || mobile.pristine"
+                           class="alert alert-danger">
+                           <div [hidden]="!mobile.hasError('minlength')">Mobile should be 10digit</div>
+                           <div [hidden]="!mobile.hasError('required')">Mobile is required</div>
+                           <div [hidden]="!mobile.hasError('pattern')">Mobile numberr should be only numbers</div>
+                      </div>
+                  </div>
+
+
+                </div>
+
+                <div class="form-group">
+                  <label for="address" class="col-sm-2 control-label">Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" placeholder="Address" name="address" [(ngModel)]="model.address" #address="ngModel">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

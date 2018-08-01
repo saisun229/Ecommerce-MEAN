@@ -1,0 +1,30 @@
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>UserId</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let user of users">
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+                <td>{{ user.userid }}</td>
+                <td>{{ user.email }}</td>                
+                <td>{{ user.address }}</td>
+                <td>{{ user.mobile }}</td>
+            </tr>   
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>UserId</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Mobile</th>
+            </tr>
+        </tfoot>
+    </table>

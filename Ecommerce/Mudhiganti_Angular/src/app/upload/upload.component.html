@@ -1,0 +1,77 @@
+<div class="row">
+   <div class="col-xs-12">
+    <form class="form-horizontal" (ngSubmit)="addSubmit(userForm)" #userForm="ngForm">
+                <div class="form-group">
+                  <label for="productname" class="col-sm-2 control-label">Product Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="productname" placeholder="Product Name" maxlength="15" required name="productname" [(ngModel)]="model.productname" #productname="ngModel">
+                    <div [hidden]="productname.valid || productname.pristine"
+                         class="alert alert-danger">
+                      Product Name is required
+
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="description" class="col-sm-2 control-label">Description</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="description" placeholder="Description in few words"  required pattern="^[^-\s][a-zA-Z0-9_\s-]+$" name="description" [(ngModel)]="model.description" #description="ngModel" maxlength="45">
+                    <div [hidden]="description.valid || description.pristine"
+                         class="alert alert-danger">
+                      <div [hidden]="!description.hasError('required')">Description is required</div>
+                      <div [hidden]="!description.hasError('pattern')">Don't start with space and special characters not allowed</div>
+                    </div>
+                    <!--<div *ngIf="description.hasError('whitespace')">Please enter valid data</div>-->
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputfile" class="col-sm-2 control-label">File input</label>
+                  <div class="col-sm-10">
+                    <input type="file" id="inputfile" accept="image/*" required="">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="price" class="col-sm-2 control-label">Price ($)</label>
+
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="price" minlength="1" maxlength="4" placeholder="Price" required pattern="[0-9]*" name="price" [(ngModel)]="model.price" #price="ngModel">
+                  <div [hidden]="price.valid || price.pristine"
+                       class="alert alert-danger">
+                       <div [hidden]="!price.hasError('required')">price is required</div>
+                       <div [hidden]="!price.hasError('pattern')">price  should be a positive value</div>
+                  </div>
+                  </div>
+
+
+                </div>
+                <div class="form-group">
+                  <label for="keywords" class="col-sm-2 control-label">Keywords use(,) separator</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="keywords" placeholder="keywords" required name="keywords" [(ngModel)]="model.keywords" #keywords="ngModel" maxlength="30">
+                    <div [hidden]="keywords.valid || keywords.pristine"
+                         class="alert alert-danger">
+                      keywords are required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group categoryCheckbox">
+                  <label for="category" class="col-sm-2 control-label">Category</label>
+                  <div class="col-sm-10">
+                    <label *ngFor="let item of categories" class="checkbox-inline">
+                      <input type="checkbox" [attr.categoryid]=item.categoryid name='category'> <span>{{ item.categroryDesc }}</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+                  </div>
+                </div>
+                <input type='hidden' id='uploadImg'/>
+    </form>
+  </div>
+ </div>
